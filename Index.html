@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trackmania Advanced Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .calculator {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .calculator input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            font-size: 1.2em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .calculator button {
+            width: 100%;
+            padding: 10px;
+            font-size: 1.2em;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .calculator button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h2>Trackmania Advanced Calculator</h2>
+        <input type="number" id="distance" placeholder="Enter distance (km)">
+        <input type="number" id="time" placeholder="Enter time (hours)">
+        <input type="number" id="lapCount" placeholder="Enter lap count">
+        <button onclick="calculateSpeed()">Calculate Average Speed</button>
+        <button onclick="calculateLapTime()">Calculate Lap Time</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function calculateSpeed() {
+            const distance = parseFloat(document.getElementById('distance').value);
+            const time = parseFloat(document.getElementById('time').value);
+            if (isNaN(distance) || isNaN(time) || time <= 0) {
+                document.getElementById('result').innerText = 'Please enter valid distance and time values.';
+                return;
+            }
+            const averageSpeed = distance / time;
+            document.getElementById('result').innerText = 'Average Speed: ' + averageSpeed.toFixed(2) + ' km/h';
+        }
+
+        function calculateLapTime() {
+            const distance = parseFloat(document.getElementById('distance').value);
+            const lapCount = parseFloat(document.getElementById('lapCount').value);
+            if (isNaN(distance) || isNaN(lapCount) || lapCount <= 0) {
+                document.getElementById('result').innerText = 'Please enter valid distance and lap count values.';
+                return;
+            }
+            const lapTime = distance / lapCount;
+            document.getElementById('result').innerText = 'Lap Time: ' + lapTime.toFixed(2) + ' km per lap';
+        }
+    </script>
+</body>
+</html>
